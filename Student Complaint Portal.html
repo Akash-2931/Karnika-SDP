@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Complaint Portal</title>
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f8ff;
+    }
+
+    header {
+      background-color: #4caf50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main, .mission, .tracking, .analytics {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #4caf50;
+    }
+
+    .mission ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .mission li {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #388e3c;
+    }
+
+    .status-placeholder {
+      margin-top: 10px;
+      font-style: italic;
+      color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #e0e0e0;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    function showConfirmation(event) {
+      event.preventDefault();
+      alert("✅ Your complaint has been submitted! We’ll look into it soon.");
+    }
+
+    function trackStatus(event) {
+      event.preventDefault();
+      const id = document.getElementById("complaint-id").value.trim();
+      let status = "❌ Complaint ID not found.";
+
+      if (id === "stu101") status = "✅ Status: Resolved";
+      else if (id === "stu202") status = "🔄 Status: In Progress";
+      else if (id === "stu303") status = "🕒 Status: Pending";
+
+      document.querySelector(".status-placeholder").textContent = status;
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>R.M.K. ENGINEERING COLLEGE </h1>
+    <h1>Student Complaint Portal</h1>
+    <p>Submit your college-related complaints and track their status easily.</p>
+  </header>
+
+  <section class="mission">
+    <h2>Why This Portal?</h2>
+    <ul>
+      <li>📚 Students can report issues like broken benches, noisy classrooms, or unfair treatment.</li>
+      <li>⚙️ Teachers and staff will work to solve problems quickly.</li>
+      <li>📍 You can check the status of your complaint anytime.</li>
+      <li>📊 We’ll use this data to improve college life for everyone.</li>
+    </ul>
+  </section>
+
+  <main>
+    <h2>Submit a Complaint</h2>
+    <form onsubmit="showConfirmation(event)">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="category">Type of Problem:</label>
+      <select id="category" name="category" required>
+        <option value="">--Choose--</option>
+        <option value="classroom">Classroom Issue</option>
+        <option value="canteen">Canteen Problem</option>
+        <option value="bullying">Bullying</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="message">Describe the Problem:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+  <section class="tracking">
+    <h2>Check Complaint Status</h2>
+    <form onsubmit="trackStatus(event)">
+      <label for="complaint-id">Enter Your Complaint ID:</label>
+      <input type="text" id="complaint-id" name="complaint-id" required />
+      <button type="submit">Check Status</button>
+    </form>
+    <p class="status-placeholder">Status: [Pending / In Progress / Resolved]</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Student Complaint Portal. Made for students, by students.</p>
+  </footer>
+</body>
+</html>
